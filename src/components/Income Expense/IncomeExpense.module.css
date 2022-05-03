@@ -1,0 +1,26 @@
+.mainContainer {
+  display: flex;
+  box-shadow: 0px 1px 7px gray;
+  /* border: 2px solid green; */
+}
+
+.moneyDiv {
+  width: 50%;
+  font-size: 2rem;
+  background-color: #f2fbff;
+  /* border: 1px solid gray; */
+  padding: 0.5rem 4rem;
+  color: black;
+  font-weight: 600;
+}
+
+.incomeDiv {
+  /* background-color: #cfffd1; */
+  border-right: 1px solid gray;
+}
+.incomeDiv_value {
+  color: rgb(0, 211, 0);
+}
+.expenseDiv_value {
+  color: rgb(255, 0, 0);
+}

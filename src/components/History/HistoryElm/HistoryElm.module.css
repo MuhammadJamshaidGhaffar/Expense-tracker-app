@@ -1,0 +1,6 @@
+.mainContainer {
+  display: flex;
+  font: 600;
+  font-size: 3rem;
+  justify-content: space-between;
+}
