@@ -1,4 +1,5 @@
 .mainContainer {
   /* border: 2px solid red; */
   margin: 5rem 16%;
+  max-width: 50rem;
 }

@@ -1,11 +1,14 @@
 import React from "react";
 import styles from "./HistoryElm.module.css";
 
-const HistoryElm = ({ style, name, value }) => (
-  <div className={styles.mainContainer}>
-    <p>{name}</p>
-    <p>{value}</p>
-  </div>
-);
+const HistoryElm = ({ style, name, value }) => {
+  let valueColor = value > 0 ? { color: "green" } : { color: "red" };
+  return (
+    <div className={styles.mainContainer} style={style}>
+      <p>{name}</p>
+      <p style={valueColor}>${value}</p>
+    </div>
+  );
+};
 
 export default HistoryElm;

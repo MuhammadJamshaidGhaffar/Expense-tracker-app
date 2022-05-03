@@ -1,0 +1,15 @@
+.mainContainer {
+  padding: 1rem 2rem;
+  font-weight: 400;
+  font-size: 1.9rem;
+  box-shadow: 0px 1px 6px grey;
+  margin: 2rem 0;
+}
+.heading {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.label {
+  border-bottom: 1px solid gray;
+}

@@ -1,0 +1,9 @@
+.mainContainer {
+  box-shadow: 0px 0px 11px grey;
+  padding: 4rem 1rem;
+}
+
+.heading {
+  font-size: 3rem;
+  text-align: center;
+}

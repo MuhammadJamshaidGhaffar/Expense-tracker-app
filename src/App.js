@@ -7,10 +7,11 @@ import Component from "./components/Components";
 function App() {
   return (
     <div className={styles.mainContainer}>
-      {/* <Component.Header />
+      <Component.Header />
       <Component.Balance style={{ margin: "3rem 0" }} />
-      <Component.IncomeExpense /> */}
-      <Component.History />
+      <Component.IncomeExpense style={{ margin: "5rem 0" }} />
+      <Component.History style={{ margin: "3rem 0" }} />
+      <Component.AddItem />
     </div>
   );
 }
