@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./History.module.css";
 import HistoryElm from "./HistoryElm/HistoryElm";
+import GlobalContext from "../../GlobalContext";
 
 const History = ({ style }) => {
+  let [Global, updateGlobal] = useContext(GlobalContext);
+  // console.log("Inside History DIv :  ", Global);
+  let historyHtml = [];
+  for (let i = 0; i < Global.history.length; i++) {
+    // for (let i = 0; i < 5; i++) {
+    historyHtml.push(
+      <HistoryElm
+        name={Global.history[i].text}
+        value={Global.history[i].amount}
+        key={historyHtml.length}
+      />
+    );
+    // console.log("History Html is :    ", historyHtml);
+  }
+
   return (
-    <div className={styles.mainContainer}>
+    <div className={styles.mainContainer} style={style}>
       <h2 className={styles.heading}>History</h2>
-      <div>
-        <HistoryElm name="Salary" value={200} />
-        <HistoryElm name="Car" value={-160} />
-        <HistoryElm name="2nd Salary" value={160} />
-        <HistoryElm name="Pencil" value={-20} />
-      </div>
+      <div>{historyHtml}</div>
     </div>
   );
 };
