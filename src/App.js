@@ -13,9 +13,17 @@ function updateGlobalContext(state, action) {
       newHistory = deleteHistoryElm(action.id, state.history);
       break;
     case "add":
+      let newId =
+        state.history.length === 0
+          ? 1
+          : state.history[state.history.length - 1].id + 1;
       newHistory = [
         ...state.history,
-        { text: action.text, amount: action.amount, id: state.history.length },
+        {
+          text: action.text,
+          amount: action.amount,
+          id: newId,
+        },
       ];
 
       break;
@@ -51,15 +59,11 @@ function getNewGlobalStateObj(newHistory) {
 function deleteHistoryElm(id, history) {
   return history.filter((elm) => elm.id !== id);
 }
-function isHistoryElmExists({ text, amount }, history) {
-  for (let i = 0; i < history.length; i++) {
-    if (text === history[i].text && amount === history[i].amount) return true;
-  }
-  return false;
-}
+
 //----------- App ----------------------
 function App() {
   if (localStorage.getItem("history") == null) {
+    console.log("Local storage was empty , Filling it with empty array");
     localStorage.setItem("history", JSON.stringify([]));
   }
   let GlobalReducer = useReducer(
