@@ -1,26 +1,30 @@
 // ----- CSS -----------
-import { useContext, useReducer } from "react";
+import { useReducer } from "react";
 import styles from "./App.module.css";
 
 //----------- Components ----------
 import Component from "./components/Components";
 import GlobalContext from "./GlobalContext";
-// import HistoryElm from "./components/History/HistoryElm/HistoryElm";
 //-------- Functions ---------------------
 function updateGlobalContext(state, action) {
-  let newHistory = [
-    ...state.history,
-    { text: action.text, amount: action.amount },
-  ];
-  let { Income, Expense } = calculateIncomeExpense(newHistory);
-  let newState = {
-    income: Income,
-    expense: Expense,
-    balance: Income - Expense,
-    history: newHistory,
-  };
+  let newHistory = [];
+  switch (action.type) {
+    case "delete":
+      newHistory = deleteHistoryElm(action.id, state.history);
+      break;
+    case "add":
+      newHistory = [
+        ...state.history,
+        { text: action.text, amount: action.amount, id: state.history.length },
+      ];
 
-  return newState;
+      break;
+    default:
+      newHistory = [...state.history];
+  }
+
+  localStorage.setItem("history", JSON.stringify(newHistory));
+  return getNewGlobalStateObj(newHistory);
 }
 function calculateIncomeExpense(historyArr) {
   let Income = 0;
@@ -34,15 +38,34 @@ function calculateIncomeExpense(historyArr) {
   }
   return { Income: Income, Expense: Expense * -1 };
 }
-
+function getNewGlobalStateObj(newHistory) {
+  let { Income, Expense } = calculateIncomeExpense(newHistory);
+  let newState = {
+    income: Income,
+    expense: Expense,
+    balance: Income - Expense,
+    history: newHistory,
+  };
+  return newState;
+}
+function deleteHistoryElm(id, history) {
+  return history.filter((elm) => elm.id !== id);
+}
+function isHistoryElmExists({ text, amount }, history) {
+  for (let i = 0; i < history.length; i++) {
+    if (text === history[i].text && amount === history[i].amount) return true;
+  }
+  return false;
+}
 //----------- App ----------------------
 function App() {
-  let GlobalReducer = useReducer(updateGlobalContext, {
-    balance: 0,
-    income: 0,
-    expense: 0,
-    history: [],
-  });
+  if (localStorage.getItem("history") == null) {
+    localStorage.setItem("history", JSON.stringify([]));
+  }
+  let GlobalReducer = useReducer(
+    updateGlobalContext,
+    getNewGlobalStateObj(JSON.parse(localStorage.getItem("history")))
+  );
 
   return (
     <GlobalContext.Provider value={GlobalReducer}>

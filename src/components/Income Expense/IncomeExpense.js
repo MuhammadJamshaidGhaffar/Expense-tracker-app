@@ -3,8 +3,8 @@ import styles from "./IncomeExpense.module.css";
 import GlobalContext from "../../GlobalContext";
 
 const IncomeExpense = ({ style }) => {
-  let [{ income, expense }, updateGlobal] = useContext(GlobalContext);
-  console.log("Inside IncomeExpense    :  ", income, "   ", expense);
+  let [{ income, expense }] = useContext(GlobalContext);
+  // console.log("Inside IncomeExpense    :  ", income, "   ", expense);
   return (
     <div className={styles.mainContainer} style={style}>
       <div className={`${styles.moneyDiv} ${styles.incomeDiv}`}>

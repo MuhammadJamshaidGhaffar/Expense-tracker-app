@@ -13,6 +13,7 @@ const History = ({ style }) => {
       <HistoryElm
         name={Global.history[i].text}
         value={Global.history[i].amount}
+        id={Global.history[i].id}
         key={historyHtml.length}
       />
     );

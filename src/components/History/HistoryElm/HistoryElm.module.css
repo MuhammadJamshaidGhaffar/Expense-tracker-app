@@ -8,3 +8,17 @@
   margin: 2rem 0;
   /* border: 2px solid red; */
 }
+.deleteBtn {
+  display: none;
+  margin-left: 2rem;
+  color: white;
+  background-color: red;
+  padding: 0.1rem 0.4rem;
+  border-radius: 1.1rem;
+}
+.mainContainer:hover .deleteBtn {
+  display: inline-block;
+}
+.valueBtnWrapper {
+  display: flex;
+}

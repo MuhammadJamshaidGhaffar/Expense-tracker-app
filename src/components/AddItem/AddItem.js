@@ -3,7 +3,7 @@ import styles from "./AddItem.module.css";
 import GlobalContext from "../../GlobalContext";
 
 const AddItem = ({ style }) => {
-  let [Global, updateGlobal] = useContext(GlobalContext);
+  let [, updateGlobal] = useContext(GlobalContext);
   return (
     <div style={style} className={styles.mainContainer}>
       <h2 className={styles.heading}>Add New Transaction</h2>
@@ -30,6 +30,7 @@ const AddItem = ({ style }) => {
           updateGlobal({
             amount: parseInt(document.getElementById("amount").value),
             text: document.getElementById("text").value,
+            type: "add",
           });
         }}
       >
